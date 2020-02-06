@@ -1,0 +1,26 @@
+/*
+ * Erascan - erasure protocol explorer
+ * https://github.com/MikaelLazarev/erascan
+ *
+ * Copyright (c) 2019. Mikael Lazarev
+ */
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer ul li a {
+  color: #121d30;
+}
+
+.footer ul li a:active {
+  color: #000000;
+}
+
+.footer ul li a:hover {
+  color: #343434;
+  cursor: pointer;
+}

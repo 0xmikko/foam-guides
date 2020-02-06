@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Switch, withRouter, Redirect } from 'react-router'
+import { Container } from 'react-bootstrap'
 
-function App() {
+import AppBar from './components/AppBar/AppBar'
+import Footer from './components/Footer'
+
+import MapScreen from "./screens/MapScreen";
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <>
+        <AppBar {...props} />
+
+        <Container style={{ minHeight: window.innerHeight - 200 }}>
+          <Switch>
+            <Route path="/" exact={true} component={MapScreen} />
+            <Redirect to={'/'} />
+          </Switch>
+        </Container>
+        <Footer />
+      </>);
 }
 
-export default App;
+export default withRouter(App)
