@@ -9,6 +9,7 @@ import {POI} from '../containers/POI';
 import {POIList} from '../containers/POIList';
 import {Redirect, Route, Switch} from 'react-router';
 import {POIDetails} from '../containers/POIDetails';
+import Account from '../containers/Account';
 
 const Map = ReactMapboxGl({
   accessToken:
@@ -23,11 +24,6 @@ const MapScreen = props => {
       </Helmet>
       {/*<Web3Wrapper>*/}
 
-      {/*<Container fluid={true} style={{marginTop: 20}}>*/}
-      {/*  <Row>*/}
-      {/*    <Col sm={12}>*/}
-      {/*      <h1 style={{marginBottom: 10}}>MapScreen</h1>*/}
-
       <Map
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
@@ -40,12 +36,11 @@ const MapScreen = props => {
           console.log(a.transform._center.lng, a.transform);
         }}>
         <Switch>
-          */}
           <Route path="/" exact={true} component={POIList} />
-          <Route path="/place/:id" exact={true} component={POIDetails} />
-          */}
+          <Route path="/places/:id" exact={true} component={POIDetails} />
           <Redirect to={'/'} />
         </Switch>
+        <Account/>
 
         <Layer type="symbol" id="marker" layout={{'icon-image': 'marker-15'}}>
           <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />

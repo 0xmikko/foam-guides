@@ -4,16 +4,18 @@ import {MediaBody} from 'react-bootstrap/Media';
 import { GiKnifeFork } from 'react-icons/gi';
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import { Redirect } from 'react-router'
+import { useHistory} from 'react-router';
 
 export const POI = () => {
 
-
+ const history = useHistory()
 
   return (
     <>
     <Card style={{marginTop: '10px', cellPadding: '0px', cellSpacing: '0px', minHeight: '10px'}}>
       <Media style={{marginLeft: '8px', marginRight: '0px', minHeight: '40px', marginTop: '12px', alignContent: 'center'}}
-      onClick={() => console.log("RERERE")}>
+      onClick={() => history.push('/places/123') } >
         <GiKnifeFork size={"2em"} />
 
         <Media.Body style={{marginLeft: '10px'}}>
