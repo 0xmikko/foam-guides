@@ -9,11 +9,6 @@ import React from 'react'
 import { Container, Col, Row, Image } from 'react-bootstrap'
 import './Footer.css'
 import logo from '../logo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-
-library.add(fab)
 
 export default () => (
   <footer className="footer navbar-fixed-bottom">
@@ -59,17 +54,17 @@ export default () => (
             </a>
             <br />
             <div style={{ marginTop: 20 }}>
-              <a href="https://github.com/MikaelLazarev/erascan">
-                <FontAwesomeIcon
-                  icon={['fab', 'github']}
-                  size={'lg'}
-                  color={'black'}
-                />
-              </a>
-              {'    '}
-              <a href="https://t.me/@mikael_l">
-                <FontAwesomeIcon icon={['fab', 'telegram']} size={'lg'} />
-              </a>
+              {/*<a href="https://github.com/MikaelLazarev/erascan">*/}
+              {/*  <FontAwesomeIcon*/}
+              {/*    icon={['fab', 'github']}*/}
+              {/*    size={'lg'}*/}
+              {/*    color={'black'}*/}
+              {/*  />*/}
+              {/*</a>*/}
+              {/*{'    '}*/}
+              {/*<a href="https://t.me/@mikael_l">*/}
+              {/*  <FontAwesomeIcon icon={['fab', 'telegram']} size={'lg'} />*/}
+              {/*</a>*/}
             </div>
           </Col>
         </Row>

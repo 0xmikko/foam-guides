@@ -17,14 +17,14 @@ import './AppBar.css'
 import logo from '../../logo.png'
 import NavItemLink from "./NavItemLink";
 
-const AppBar = ({ location: { pathname }}) => {
-  console.log(pathname)
+const AppBar = () => {
+  const pathname="33"
   return (
     <Container fluid >
       <Container>
         <Navbar style={{ textColor: '#000000' }}>
           <Navbar.Brand href="/">
-            <Image src={logo} alt={'logo'} height={30} />
+            <Image src={logo} alt={'logo'} height={40} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
