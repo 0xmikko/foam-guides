@@ -1,3 +1,10 @@
+/*
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
+ *
+ *  Copyright (c) 2020. Mikael Lazarev
+ */
+
 import React from 'react';
 import AccountWidget from '../components/AccountWidget';
 import Jazzicon from 'react-jazzicon';

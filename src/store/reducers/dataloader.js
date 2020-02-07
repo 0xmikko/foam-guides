@@ -1,8 +1,8 @@
 /*
- * Erascan - erasure protocol explorer
- * https://github.com/MikaelLazarev/erascan
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
  *
- * Copyright (c) 2019. Mikael Lazarev
+ *  Copyright (c) 2020. Mikael Lazarev
  */
 
 import { updateState } from '../utils/updateState'

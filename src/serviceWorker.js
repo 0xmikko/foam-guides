@@ -1,3 +1,10 @@
+/*
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
+ *
+ *  Copyright (c) 2020. Mikael Lazarev
+ */
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
