@@ -20,7 +20,7 @@ export const WindowWidget = ({children}) => {
         zIndex: '1 !important',
         padding: '6px',
         width: '25%',
-        minWidth: '350px',
+        minWidth: '400px',
         borderRadius: '10px',
         border: '1px solid',
         borderColor: '#A0A0A0',
