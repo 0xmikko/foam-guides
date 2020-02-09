@@ -6,3 +6,4 @@
  */
 
 export { getWeb3 } from './web3'
+export { getBoxAccount } from './box'

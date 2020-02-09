@@ -9,7 +9,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import ReactMapboxGl, {Layer, Feature} from 'react-mapbox-gl';
 
-import Web3Wrapper from '../components/Web3Wrapper';
+import BoxProvider from '../components/BoxProvider';
 import Form from 'react-bootstrap/Form';
 import AppBar from '../components/AppBar/AppBar';
 import {POI} from '../containers/POI';
@@ -31,6 +31,7 @@ const MapScreen = props => {
       </Helmet>
       {/*<Web3Wrapper>*/}
 
+      <BoxProvider>
       <Map
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
@@ -53,6 +54,7 @@ const MapScreen = props => {
           <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
         </Layer>
       </Map>
+      </BoxProvider>
     </>
   );
 };

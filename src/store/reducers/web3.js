@@ -43,5 +43,6 @@ export default (state = initialState, action) => {
 }
 
 export const web3 = state => state.web3
+export const web3accounts = state => state.accounts
 export const web3status = state => state.status
-export const accounts = state => state.accounts
+
