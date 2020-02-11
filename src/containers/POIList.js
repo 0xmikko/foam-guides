@@ -34,3 +34,5 @@ export const POIList = () => {
     </WindowWidget>
   );
 };
+
+export default POIList

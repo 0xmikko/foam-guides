@@ -7,6 +7,7 @@
 
 import Box from '3box';
 import {BOX_FAILURE, BOX_SUCCESS} from './actionTypes';
+import {APP_SPACE_NAME, ETH_MODERATOR_ADDRESS} from '../../config';
 
 export const getBoxAccount = () => {
   console.log("Getting box account")
@@ -41,3 +42,23 @@ export const getBoxAccount = () => {
     }
 }
 
+export const writeComment = (item, jsonString) => {
+  console.log(`Wrting comment to ${item} with conten ${jsonString}`)
+  return async (dispatch, getState) => {
+    const box = getState().box.box
+    if (!box) {
+      dispatch({type: 'WRONG BOX'})
+    }
+    //box.openThread()
+  }
+}
+
+export const getReviews = (geocache) => {
+  return async (dispatch, getState) => {
+    const box = getState().box.box
+    if (!box) {
+      dispatch({type: 'WRONG BOX'})
+    }
+    const reviews = await Box.getThread(APP_SPACE_NAME, geocache, ETH_MODERATOR_ADDRESS, false)
+  }
+}

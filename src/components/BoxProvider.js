@@ -11,16 +11,7 @@ import * as actions from '../store/actions';
 import * as reducers from '../store/reducers';
 import * as statuses from '../store/utils/status';
 
-import NoWeb3Component from './NoWeb3Component';
-
-function BoxProvider({
-  getWeb3,
-  Web3,
-  children,
-  web3status,
-  boxAccount,
-  getBoxAccount,
-}) {
+function BoxProvider({getWeb3, Web3, web3status, boxAccount, getBoxAccount}) {
   useEffect(() => {
     if (!Web3) {
       getWeb3();
@@ -33,7 +24,7 @@ function BoxProvider({
     }
   }, [Web3, boxAccount, getBoxAccount]);
 
-  return children;
+  return '';
 }
 
 const mapStateToProps = state => ({
