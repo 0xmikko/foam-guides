@@ -8,6 +8,8 @@
 import Box from '3box';
 import * as actionTypes from './actionTypes';
 import {APP_SPACE_NAME, ETH_MODERATOR_ADDRESS} from '../../config';
+import {getGuideLevel} from './foam';
+import * as status from '../utils/status';
 
 export const getBoxAccount = () => {
   console.log('Getting box account');
@@ -62,25 +64,24 @@ export const openThread = listingHash => {
       dispatch({type: 'WRONG BOX'});
     }
 
-
     await box.auth([APP_SPACE_NAME], {address: getState().web3.accounts[0]});
     await box.syncDone;
     // const space = await box.openSpace(APP_SPACE_NAME);
 
     console.log(box);
 
-
     console.log('RW-S for', listingHash);
     try {
-
       const thread = await box.openThread(APP_SPACE_NAME, listingHash, {
         firstModerator: ETH_MODERATOR_ADDRESS,
       });
-      let reviews= await thread.getPosts();
+      let reviews = await thread.getPosts();
       console.log('RW-F', reviews);
 
       // Filter all messages which doesn't contains rating & review as data fields
-      reviews = reviews.filter(x => x.message.rating).filter(x => x.message.review)
+      reviews = reviews
+        .filter(x => x.message.rating)
+        .filter(x => x.message.review);
 
       dispatch({
         type: actionTypes.BOX_OPEN_THREAD_PREFIX + actionTypes.DETAIL_SUCCESS,
@@ -89,17 +90,26 @@ export const openThread = listingHash => {
       });
 
       const uniqueUsers = [...new Set(reviews.map(x => x.author))];
-      uniqueUsers.map(x => dispatch(getProfile(x)))
-
+      uniqueUsers.map(x => {
+        dispatch(getProfile(x));
+        dispatch(getGuideLevel(x));
+      });
     } catch (e) {
       console.log('Error', e);
     }
   };
 };
 
-export const postReview = (listingHash, data) => {
-  console.log(`Wrting comment to ${listingHash} with content ${data}`);
+export const postReview = (listingHash, data, updateHash) => {
+  console.log(`Writing review to ${listingHash} with content ${data}`);
   return async (dispatch, getState) => {
+
+    dispatch({
+      type: actionTypes.BOX_POST_STATUS,
+      meta: { id: updateHash },
+      payload: status.STATUS_LOADING
+    })
+
     const box = getState().box.box;
     if (!box) {
       dispatch({type: 'WRONG BOX'});
@@ -119,6 +129,14 @@ export const postReview = (listingHash, data) => {
       const pid = await thread.post({account, ...data});
       console.log('Done', pid);
       await box.syncDone;
+
+      dispatch({
+        type: actionTypes.BOX_POST_STATUS,
+        meta: { id: updateHash },
+        payload: status.STATUS_SUCCESS
+      })
+
+
     } catch (e) {
       console.log('ERR ', e);
     }
@@ -127,13 +145,12 @@ export const postReview = (listingHash, data) => {
 
 export const getProfile = address => {
   return async (dispatch, getState) => {
-
-    const profile = await Box.getProfile(address)
-    console.log(profile)
+    const profile = await Box.getProfile(address);
+    console.log(profile);
     dispatch({
       type: actionTypes.BOX_PROFILE_PREFIX + actionTypes.DETAIL_SUCCESS,
-      payload: { data: profile },
-      meta: { id: address }
-    })
-  }
-}
+      payload: {data: profile},
+      meta: {id: address},
+    });
+  };
+};

@@ -56,9 +56,8 @@ export default (fieldList, submitLabel, submitDisabled) => {
           disabled={submitDisabled}
           style={{
             marginRight: 10,
-            backgroundColor: '#43cd30',
-            borderColor: '#43cd30',
             color: '#FFF',
+            width: '100%',
           }}
         >
           {submitLabel || 'Save'}

@@ -13,7 +13,7 @@ import WindowWidget from '../components/WindowWidget';
 import {POI} from './POI';
 
 import * as reducers from '../store/reducers';
-import * as status from '../store/utils/status';
+import {Helmet} from 'react-helmet';
 
 export const POIList = ({POIs}) => {
   let poisRendered;
@@ -27,12 +27,17 @@ export const POIList = ({POIs}) => {
   poisRendered = POIs.data.map(e => <POI item={e} />) || 'Nothing was found';
 
   return (
-    <WindowWidget>
-      <Form>
-        <Form.Control placeholder={'Search'} className={'form-control'} />
-      </Form>
-      {poisRendered}
-    </WindowWidget>
+    <>
+      <Helmet>
+        <title>Foam Guide</title>
+      </Helmet>
+      <WindowWidget>
+        <Form>
+          <Form.Control placeholder={'Search'} className={'form-control'} />
+        </Form>
+        {poisRendered}
+      </WindowWidget>
+    </>
   );
 };
 

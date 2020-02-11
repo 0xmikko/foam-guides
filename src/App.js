@@ -32,7 +32,7 @@ const Map = ReactMapboxGl({
 
 function App({getPOI}) {
   const [show, setShow] = useState(false);
-  const [threadID, setThreadID] = useState(null);
+  const [threadID, setThreadID] = useState({id: 0, name: ''});
 
   const [lng, setLng] = useState(-79.5);
   const [lat, setLat] = useState(40);
@@ -44,8 +44,7 @@ function App({getPOI}) {
     } else {
       console.log('Map bounds have been changed by user interaction');
       const bounds = e.getBounds();
-      getPOI(bounds)
-
+      getPOI(bounds);
     }
 
     // const aLng = e.transform._center.lng.toFixed(6);
@@ -62,21 +61,17 @@ function App({getPOI}) {
   };
 
   const handleClose = () => setShow(false);
-  const handleShow = id => {
-    setThreadID(id)
+  const handleShow = (id, name) => {
+    setThreadID({id, name});
     setShow(true);
-  }
+  };
 
   const history = useHistory();
 
   return (
     <>
-      <Helmet>
-        <title>MapScreen</title>
-      </Helmet>
-
       <BoxProvider />
-      <ReviewWriteModal show={show} onHide={handleClose} listingHash={threadID} />
+      <ReviewWriteModal show={show} onHide={handleClose} place={threadID} />
       <Map
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
@@ -93,11 +88,7 @@ function App({getPOI}) {
             exact={true}
             component={POIList}
           />
-          <Route
-            path="/"
-            exact={true}
-            component={POIList}
-          />
+          <Route path="/" exact={true} component={POIList} />
           <Route
             path="/places/:id"
             exact={true}
@@ -114,7 +105,6 @@ function App({getPOI}) {
     </>
   );
 }
-
 
 const mapStateToProps = state => ({
   boxAccount: reducers.boxAccount(state),

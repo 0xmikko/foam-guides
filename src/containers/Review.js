@@ -26,6 +26,13 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
+/*
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
+ *
+ *  Copyright (c) 2020. Mikael Lazarev
+ */
+
 import React from 'react';
 import {Card, Media} from 'react-bootstrap';
 import {MediaBody} from 'react-bootstrap/Media';
@@ -38,8 +45,9 @@ import MetaJazzicon from '../components/MetaJazzicon';
 import * as reducers from '../store/reducers';
 import * as actions from '../store/actions';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
-const Review = ({review, rating, author, profiles, account}) => {
+const Review = ({review, rating, author, profiles, account, timestamp}) => {
   const history = useHistory();
 
   let name = account ? account : author.slice(10);
@@ -76,10 +84,13 @@ const Review = ({review, rating, author, profiles, account}) => {
               style={{marginBottom: '0px'}}>
               {name}
             </strong>
-            <div className={'mg-b-0 tx-12 tx-color-03'} a={''}>
-              <Rater total={5} rating={rating} interactive={false} /> Foam Guide
-              (15 reviews)
+            <div className={'mg-b-0 tx-12 tx-color-02'} a={''}>
+              Foam Guide (15 reviews){'  '}
+              <span className={'tx-color-03'}>
+                {moment(timestamp * 1000, 'x').fromNow()}
+              </span>
             </div>
+            <Rater total={5} rating={rating} interactive={false} />
             <p>{review}</p>
           </Media.Body>
         </Media>

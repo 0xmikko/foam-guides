@@ -6,6 +6,7 @@
  */
 import {createAction} from 'redux-api-middleware';
 import * as actionTypes from './actionTypes';
+import Box from '3box';
 
 export const getPOI = boundaries => {
   const DATA_URL =
@@ -52,3 +53,25 @@ export const getPOIDetails = listingHash => {
     ],
   });
 };
+
+export const getGuideLevel = address => {
+  const id = address;
+  return createAction({
+    endpoint: `https://map-api-direct.foam.space​/user​/${address}​/assets`,
+    method: 'GET',
+    types: [
+      {
+        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_REQUEST,
+        meta: {id},
+      },
+      {
+        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_SUCCESS,
+        meta: {id},
+      },
+      {
+        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_FAILURE,
+        meta: {id},
+      },
+    ],
+  });
+}

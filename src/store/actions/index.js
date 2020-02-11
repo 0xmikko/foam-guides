@@ -6,5 +6,5 @@
  */
 
 export { getBoxAccount, openThread, postReview } from './box'
-export { getPOI, getPOIDetails } from './foam'
+export { getPOI, getPOIDetails, getGuideLevel } from './foam'
 export { getWeb3 } from './web3'

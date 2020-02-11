@@ -15,6 +15,7 @@ const initialState = {
   address: '',
   state: statuses.STATUS_UPDATE_NEEDED,
   currentThread: null,
+  postHashes: [],
 };
 
 export default (state = initialState, action) => {
@@ -43,9 +44,19 @@ export default (state = initialState, action) => {
         status: statuses.STATUS_FAILURE,
       });
 
+    case actionTypes.BOX_POST_STATUS:
+      const { id } = action.meta;
+      return updateState(state, {
+        postHashes: updateState(state.postHashes,
+          {
+            [id]: action.payload,
+          })
+      });
+
     default:
       return state;
   }
 };
 
 export const boxAccount = state => state;
+export const boxPostStatus = state => state.postHashes;
