@@ -19,38 +19,82 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
+/*
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
+ *
+ *  Copyright (c) 2020. Mikael Lazarev
+ */
+
 import React from 'react';
-import { Card, Media } from 'react-bootstrap'
+import {Card, Media} from 'react-bootstrap';
 import {MediaBody} from 'react-bootstrap/Media';
-import { GiKnifeFork } from 'react-icons/gi';
-import Rater from 'react-rater'
-import 'react-rater/lib/react-rater.css'
-import { useHistory} from 'react-router';
+import {GiKnifeFork} from 'react-icons/gi';
+import Rater from 'react-rater';
+import 'react-rater/lib/react-rater.css';
+import {useHistory} from 'react-router';
 import Jazzicon from 'react-jazzicon';
 import MetaJazzicon from '../components/MetaJazzicon';
+import * as reducers from '../store/reducers';
+import * as actions from '../store/actions';
+import {connect} from 'react-redux';
 
-export const Review = ({address, review, stars, name, token}) => {
+const Review = ({review, rating, author, profiles, account}) => {
+  const history = useHistory();
 
-  const history = useHistory()
+  let name = account ? account : author.slice(10);
+
+  if (profiles && profiles[author] && profiles[author].data) {
+    name = profiles[author].data.name || account || author.slice(10);
+  }
 
   return (
     <>
-      <Card style={{marginTop: '10px', cellPadding: '0px', cellSpacing: '0px', minHeight: '10px'}}>
-        <Media style={{marginLeft: '8px', marginRight: '0px', minHeight: '40px', marginTop: '15px'  }}
-               onClick={() => history.push('/places/123') } >
+      <Card
+        style={{
+          marginTop: '10px',
+          cellPadding: '0px',
+          cellSpacing: '0px',
+          minHeight: '10px',
+        }}>
+        <Media
+          style={{
+            marginLeft: '8px',
+            marginRight: '0px',
+            minHeight: '40px',
+            marginTop: '15px',
+          }}>
           <div style={{marginTop: '7px'}}>
-         <MetaJazzicon address={address} diameter={30} />
+            <MetaJazzicon address={account} diameter={30} />
           </div>
 
           <Media.Body style={{marginLeft: '10px'}}>
-            <strong className={"tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold"}  style={{marginBottom: '0px'}}>{address}</strong>
-            <div className={"mg-b-0 tx-12 tx-color-03"} a={""}><Rater total={5} rating={2} interactive={false}/> Foam Guide (15 reviews)</div>
-            <p>The prices are below average, the quality level. Tasty and very quickly cooked chicken breast. High-quality alcohol. You can watch football. I didn’t take hookahs, I can’t say anything.</p>
+            <strong
+              className={
+                'tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold'
+              }
+              style={{marginBottom: '0px'}}>
+              {name}
+            </strong>
+            <div className={'mg-b-0 tx-12 tx-color-03'} a={''}>
+              <Rater total={5} rating={rating} interactive={false} /> Foam Guide
+              (15 reviews)
+            </div>
+            <p>{review}</p>
           </Media.Body>
         </Media>
-
-
       </Card>
     </>
-  )
-}
+  );
+};
+
+const mapStateToProps = state => ({
+  profiles: reducers.Profiles(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  // postReview: (listingHash, data) =>
+  //   dispatch(actions.postReview(listingHash, data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Review);

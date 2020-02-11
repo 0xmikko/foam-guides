@@ -6,24 +6,25 @@
  */
 
 import React from 'react';
+import {connect} from 'react-redux';
+import Form from 'react-bootstrap/Form';
 import 'react-rater/lib/react-rater.css';
 import WindowWidget from '../components/WindowWidget';
-import Form from 'react-bootstrap/Form';
 import {POI} from './POI';
 
-export const POIList = () => {
-  const pois = [
-    {
-      name: 'Restraunt',
-      address: 'strasse 34',
-    },
-    {
-      name: 'Restraunt',
-      address: 'strasse 34',
-    },
-  ];
+import * as reducers from '../store/reducers';
+import * as status from '../store/utils/status';
 
-  const poisRendered = pois.map(e => <POI />);
+export const POIList = ({POIs}) => {
+  let poisRendered;
+
+  const {data} = POIs;
+
+  if (!data) {
+    return 'Loading';
+  }
+
+  poisRendered = POIs.data.map(e => <POI item={e} />) || 'Nothing was found';
 
   return (
     <WindowWidget>
@@ -35,4 +36,8 @@ export const POIList = () => {
   );
 };
 
-export default POIList
+const mapStateToProps = state => ({
+  POIs: reducers.POIList(state),
+});
+
+export default connect(mapStateToProps)(POIList);

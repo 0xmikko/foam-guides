@@ -14,6 +14,7 @@ const initialState = {
   name: '',
   address: '',
   state: statuses.STATUS_UPDATE_NEEDED,
+  currentThread: null,
 };
 
 export default (state = initialState, action) => {

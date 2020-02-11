@@ -26,7 +26,6 @@ export function createDataLoader(prefix = '') {
       case prefix + actionTypes.LIST_REQUEST:
         return updateState(state, {
           List: updateState(state.List, {
-            // data: [],
             status: status.STATUS_LOADING,
           }),
         })
@@ -41,20 +40,16 @@ export function createDataLoader(prefix = '') {
       case prefix + actionTypes.LIST_SUCCESS:
         return updateState(state, {
           List: updateState(state.List, {
-            data: action.payload.data,
+            data: action.payload,
             status: status.STATUS_SUCCESS,
           }),
         })
 
       case prefix + actionTypes.LIST_FAILURE:
-        const listError = action.payload.response
-          ? action.payload.response.message
-          : action.payload.message
-
         return updateState(state, {
           List: updateState(state.List, {
             data: [],
-            error: listError || 'Server connection error',
+            error: 'Server connection error',
             status: status.STATUS_FAILURE,
           }),
         })
@@ -75,6 +70,8 @@ export function createDataLoader(prefix = '') {
       case prefix + actionTypes.DETAIL_SUCCESS:
         id = action.meta.id
 
+        console.log("ACT", action)
+
         hash = action.meta.hash || 0
         hashUpdate = {}
         hashUpdate[hash] = +Date.now()
@@ -82,7 +79,7 @@ export function createDataLoader(prefix = '') {
         return updateState(state, {
           Details: updateState(state.Details, {
             [id]: {
-              data: action.payload ? action.payload.data : null,
+              data: action.payload.data,
               status: status.STATUS_SUCCESS,
             },
           }),

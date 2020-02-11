@@ -5,21 +5,16 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-import { createStore, compose, applyMiddleware } from 'redux'
-import rootReducer from './reducers'
-import thunk from 'redux-thunk'
-import { apiMiddleware} from 'redux-api-middleware';
+import {createStore, compose, applyMiddleware} from 'redux';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
+import {apiMiddleware} from 'redux-api-middleware';
 
-import { routerMiddleware } from 'react-router-redux'
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default history => {
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
+export default function configureStore(initialState) {
   return createStore(
-    rootReducer(history),
-    composeEnhancers(applyMiddleware(apiMiddleware, thunk, routerMiddleware(history)))
-  )
-
-  // return configureStore;
+    rootReducer(),
+    composeEnhancers(applyMiddleware(apiMiddleware, thunk)),
+  );
 }

@@ -11,17 +11,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import {createBrowserHistory} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
+import {BrowserRouter as Router} from 'react-router-dom'
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 
 const history = createBrowserHistory();
-const store = configureStore(history);
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <Router>
       <App />
-    </ConnectedRouter>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );

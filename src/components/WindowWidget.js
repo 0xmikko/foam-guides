@@ -21,9 +21,11 @@ export const WindowWidget = ({children}) => {
         padding: '6px',
         width: '25%',
         minWidth: '400px',
+        maxHeight: '90%',
         borderRadius: '10px',
         border: '1px solid',
         borderColor: '#A0A0A0',
+        overflow: 'scroll',
       }}>
       {children}
     </div>

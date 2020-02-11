@@ -15,7 +15,7 @@ import * as reducers from '../store/reducers';
 import {connect} from 'react-redux';
 import * as actions from '../store/actions';
 
-function ReviewWriteModal({show, onHide, boxAccount}) {
+function ReviewWriteModal({show, onHide, postReview, listingHash}) {
   const fields = [
     {
       name: 'Review',
@@ -29,22 +29,23 @@ function ReviewWriteModal({show, onHide, boxAccount}) {
   const [rating, setRating] = useState(5);
 
   const onSubmit = values => {
-    const json = JSON.stringify({rating, ...values})
-    console.log(json)
-    // boxAccount
-  }
+    postReview(listingHash, {rating, ...values});
+  };
 
   return (
     <Modal show={show} onHide={onHide} centered={true}>
       <Modal.Header closeButton>
-        <Modal.Title>Write a review</Modal.Title>
+        <Modal.Title>Write a review {listingHash}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <BoxWrapper>
-          <Rater total={5} rating={rating} onRate={e => setRating(e.rating)}/>
-          <FormikForm fieldList={fields} initialValues={{}} onSubmit={onSubmit} />
-
+          <Rater total={5} rating={rating} onRate={e => setRating(e.rating)} />
+          <FormikForm
+            fieldList={fields}
+            initialValues={{}}
+            onSubmit={onSubmit}
+          />
         </BoxWrapper>
       </Modal.Body>
     </Modal>
@@ -56,7 +57,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getBoxAccount: () => dispatch(actions.getBoxAccount()),
+  postReview: (listingHash, data) =>
+    dispatch(actions.postReview(listingHash, data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewWriteModal);
