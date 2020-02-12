@@ -1,7 +1,7 @@
 # Foam Guides
 ## Decentralised reviews powered by communities and FOAM maps 
 
-### Official site: http://foam-guides.space
+### Official site: https://foam-guides.space
 
 ### Video presentation: 
 
