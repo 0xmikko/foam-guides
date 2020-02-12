@@ -53,10 +53,16 @@ function ReviewWriteModal({
     ) {
       setStatus('DONE');
       getReviews(id);
-      setUpdateHash(0);
-      setTimeout(() => onHide(), 1500);
+
+      setTimeout(() => closeWindow(), 1500);
     }
   });
+
+  const closeWindow = () => {
+    setUpdateHash(0);
+    setStatus('READY');
+    onHide();
+  };
 
   const onSubmit = values => {
     setStatus('SUBMITTING');
@@ -110,7 +116,7 @@ function ReviewWriteModal({
   }
 
   return (
-    <Modal show={show} onHide={onHide} centered={true}>
+    <Modal show={show} onHide={closeWindow} centered={true}>
       <Modal.Header closeButton>
         <Modal.Title>Write a review for {name}</Modal.Title>
       </Modal.Header>
