@@ -1,5 +1,5 @@
 # Foam Guides
-## Decentralised reviews powered by communities and FOAM maps 
+#### Decentralised reviews powered by communities and FOAM maps 
 
 ### Official site: https://foam-guides.space
 
