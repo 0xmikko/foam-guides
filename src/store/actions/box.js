@@ -89,10 +89,18 @@ export const openThread = listingHash => {
         meta: {id: listingHash},
       });
 
+      // Get guide levels
+      const uniqueAccounts = [...new Set(reviews.map(x => x.message.account))];
+      console.log("UAA", reviews)
+      console.log("UAA", uniqueAccounts)
+      uniqueAccounts.map(x => {
+        dispatch(getGuideLevel(x));
+      });
+
+      // Get Profiles
       const uniqueUsers = [...new Set(reviews.map(x => x.author))];
       uniqueUsers.map(x => {
         dispatch(getProfile(x));
-        dispatch(getGuideLevel(x));
       });
     } catch (e) {
       console.log('Error', e);
@@ -103,12 +111,11 @@ export const openThread = listingHash => {
 export const postReview = (listingHash, data, updateHash) => {
   console.log(`Writing review to ${listingHash} with content ${data}`);
   return async (dispatch, getState) => {
-
     dispatch({
       type: actionTypes.BOX_POST_STATUS,
-      meta: { id: updateHash },
-      payload: status.STATUS_LOADING
-    })
+      meta: {id: updateHash},
+      payload: status.STATUS_LOADING,
+    });
 
     const box = getState().box.box;
     if (!box) {
@@ -132,11 +139,9 @@ export const postReview = (listingHash, data, updateHash) => {
 
       dispatch({
         type: actionTypes.BOX_POST_STATUS,
-        meta: { id: updateHash },
-        payload: status.STATUS_SUCCESS
-      })
-
-
+        meta: {id: updateHash},
+        payload: status.STATUS_SUCCESS,
+      });
     } catch (e) {
       console.log('ERR ', e);
     }

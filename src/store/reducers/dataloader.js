@@ -79,7 +79,7 @@ export function createDataLoader(prefix = '') {
         return updateState(state, {
           Details: updateState(state.Details, {
             [id]: {
-              data: action.payload.data,
+              data: action.payload,
               status: status.STATUS_SUCCESS,
             },
           }),

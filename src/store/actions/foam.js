@@ -56,8 +56,9 @@ export const getPOIDetails = listingHash => {
 
 export const getGuideLevel = address => {
   const id = address;
+  console.log("UAA-2", address)
   return createAction({
-    endpoint: `https://map-api-direct.foam.space​/user​/${address}​/assets`,
+    endpoint: 'https://map-api-direct.foam.space​/user/' + address + '/assets/',
     method: 'GET',
     types: [
       {

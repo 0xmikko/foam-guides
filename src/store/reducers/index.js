@@ -18,7 +18,7 @@ export default () =>
     foam: createDataLoader(actionTypes.FOAM_POI_PREFIX),
     reviews: createDataLoader(actionTypes.BOX_OPEN_THREAD_PREFIX),
     profiles: createDataLoader(actionTypes.BOX_PROFILE_PREFIX),
-    guides: createDataLoader(actionTypes.BOX_PROFILE_PREFIX),
+    guides: createDataLoader(actionTypes.FOAM_GUIDE_PREFIX),
     web3,
   });
 

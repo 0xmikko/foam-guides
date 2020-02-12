@@ -44,7 +44,7 @@ export const POIDetails = ({
   if (!POIDetails[id] || POIDetails[id].status !== status.STATUS_SUCCESS) {
     return <BeatLoader size={15} margin={5} />;
   }
-  const {data} = POIDetails[id];
+  const {data} = POIDetails[id].data;
 
   let reviewsRendered = <BeatLoader size={15} margin={5} />,
     avgRating = null,
@@ -53,7 +53,7 @@ export const POIDetails = ({
   if (reviews[id] && reviews[id].status === status.STATUS_SUCCESS) {
     console.log('RW', reviews[id]);
 
-    const reviewsData = reviews[id].data;
+    const reviewsData = reviews[id].data.data;
 
     const sumRating = reviewsData
       .map(e => e.message.rating)

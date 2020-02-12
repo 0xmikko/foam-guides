@@ -5,41 +5,6 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-/*
- *  FoamGuides - Best Local Guides service
- *  https://github.com/MikaelLazarev/foam-guides
- *
- *  Copyright (c) 2020. Mikael Lazarev
- */
-
-/*
- *  FoamGuides - Best Local Guides service
- *  https://github.com/MikaelLazarev/foam-guides
- *
- *  Copyright (c) 2020. Mikael Lazarev
- */
-
-/*
- *  FoamGuides - Best Local Guides service
- *  https://github.com/MikaelLazarev/foam-guides
- *
- *  Copyright (c) 2020. Mikael Lazarev
- */
-
-/*
- *  FoamGuides - Best Local Guides service
- *  https://github.com/MikaelLazarev/foam-guides
- *
- *  Copyright (c) 2020. Mikael Lazarev
- */
-
-/*
- *  FoamGuides - Best Local Guides service
- *  https://github.com/MikaelLazarev/foam-guides
- *
- *  Copyright (c) 2020. Mikael Lazarev
- */
-
 import React from 'react';
 import {Card, Media} from 'react-bootstrap';
 import {MediaBody} from 'react-bootstrap/Media';
@@ -53,20 +18,15 @@ import * as reducers from '../store/reducers';
 import * as actions from '../store/actions';
 import {connect} from 'react-redux';
 import moment from 'moment';
+import GuideLevel from './GuideLevel';
 
 const Review = ({review, rating, author, profiles, account, timestamp}) => {
-
   let guide;
 
   let name = account ? account : author.slice(10);
 
   if (profiles && profiles[author] && profiles[author].data) {
-    name = profiles[author].data.name || account || author.slice(10);
-  }
-
-  if (account && profiles[account]){
-    const guideLevel = profiles[account]
-    console.log(guideLevel)
+    name = profiles[author].data.data.name || account || author.slice(10);
   }
 
   return (
@@ -98,7 +58,8 @@ const Review = ({review, rating, author, profiles, account, timestamp}) => {
               {name}
             </strong>
             <div className={'mg-b-0 tx-12 tx-color-02'} a={''}>
-              Foam Guide (15 reviews){'  '}
+              <GuideLevel account={account} />
+              {'  '}
               <span className={'tx-color-03'}>
                 {moment(timestamp * 1000, 'x').fromNow()}
               </span>
@@ -116,9 +77,4 @@ const mapStateToProps = state => ({
   profiles: reducers.Profiles(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  // postReview: (listingHash, data) =>
-  //   dispatch(actions.postReview(listingHash, data)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Review);
+export default connect(mapStateToProps)(Review);
