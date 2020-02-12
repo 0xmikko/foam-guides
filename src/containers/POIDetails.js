@@ -18,9 +18,9 @@ import * as status from '../store/utils/status';
 import {connect} from 'react-redux';
 import {Link, useParams} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
+import ReviewWriteModal from './ReviewWriteModal';
 
 export const POIDetails = ({
-  onWriteComment,
   getPOIDetails,
   POIDetails,
   boxAccount,
@@ -38,6 +38,8 @@ export const POIDetails = ({
       getReviews(id);
     }
   }, [boxAccount.status]);
+
+  const [showWriteModal, setShowWriteModal] = useState(false);
 
   if (!POIDetails[id] || POIDetails[id].status !== status.STATUS_SUCCESS) {
     return <BeatLoader size={15} margin={5} />;
@@ -76,14 +78,23 @@ export const POIDetails = ({
       <Helmet>
         <title>{data.name} - Foam Guide</title>
       </Helmet>
-
+      <ReviewWriteModal
+        show={showWriteModal}
+        onHide={() => setShowWriteModal(false)}
+        place={{id, name: data.name}}
+      />
       <WindowWidget>
         <div style={{margin: '15px 10px 10px 10px'}}>
-          <Link to={'/'}>Back to POI</Link>
+          <Link to={'/'}>Back to list</Link>
           <h4>{data.name}</h4>
           <strong>{avgRating ? avgRating.toFixed(1) : ''} </strong>
           <Rater interactive={false} total={5} rating={avgRating} />
-          &nbsp;({reviewsQty})
+          &nbsp;
+          {reviewsQty
+            ? reviewsQty === 1
+              ? '(1 review)'
+              : '(' + reviewsQty + ' reviews)'
+            : ''}
           <br />
           <Media>
             <Media.Body>
@@ -93,7 +104,7 @@ export const POIDetails = ({
               size={'sm'}
               variant={'outline-primary'}
               style={{marginTop: '6px'}}
-              onClick={() => (onWriteComment ? onWriteComment(id, data.name) : null)}>
+              onClick={() => setShowWriteModal(true)}>
               Write Review
             </Button>
           </Media>

@@ -6,17 +6,20 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {Modal} from 'react-bootstrap';
-import BoxWrapper from '../components/BoxWrapper';
-import Rater from 'react-rater';
-import * as Yup from 'yup';
-import FormikForm from '../components/Forms/FormikForm';
-import * as reducers from '../store/reducers';
 import {connect} from 'react-redux';
-import * as actions from '../store/actions';
-import * as statuses from '../store/utils/status';
+import {Modal} from 'react-bootstrap';
+import Rater from 'react-rater';
 import {BeatLoader} from 'react-spinners';
 import {FaCheckCircle} from 'react-icons/fa';
+
+import BoxWrapper from '../components/BoxWrapper';
+import FormikForm from '../components/Forms/FormikForm';
+
+import * as Yup from 'yup';
+
+import * as actions from '../store/actions';
+import * as reducers from '../store/reducers';
+import * as statuses from '../store/utils/status';
 
 function ReviewWriteModal({
   show,

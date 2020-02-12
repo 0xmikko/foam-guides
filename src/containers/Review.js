@@ -33,6 +33,13 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
+/*
+ *  FoamGuides - Best Local Guides service
+ *  https://github.com/MikaelLazarev/foam-guides
+ *
+ *  Copyright (c) 2020. Mikael Lazarev
+ */
+
 import React from 'react';
 import {Card, Media} from 'react-bootstrap';
 import {MediaBody} from 'react-bootstrap/Media';
@@ -48,12 +55,18 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 
 const Review = ({review, rating, author, profiles, account, timestamp}) => {
-  const history = useHistory();
+
+  let guide;
 
   let name = account ? account : author.slice(10);
 
   if (profiles && profiles[author] && profiles[author].data) {
     name = profiles[author].data.name || account || author.slice(10);
+  }
+
+  if (account && profiles[account]){
+    const guideLevel = profiles[account]
+    console.log(guideLevel)
   }
 
   return (

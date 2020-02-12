@@ -7,7 +7,6 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import Form from 'react-bootstrap/Form';
 import 'react-rater/lib/react-rater.css';
 import WindowWidget from '../components/WindowWidget';
 import {POI} from './POI';
@@ -32,9 +31,7 @@ export const POIList = ({POIs}) => {
         <title>Foam Guide</title>
       </Helmet>
       <WindowWidget>
-        <Form>
-          <Form.Control placeholder={'Search'} className={'form-control'} />
-        </Form>
+        <h5 style={{marginTop: '14px', marginBottom: '8px',}}>Points of interest</h5>
         {poisRendered}
       </WindowWidget>
     </>
