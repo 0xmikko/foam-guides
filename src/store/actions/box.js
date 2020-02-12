@@ -18,26 +18,32 @@ export const getBoxAccount = () => {
     const web3 = getState().web3.web3;
     const accounts = getState().web3.accounts;
 
-    // Connection to BOX
-    const box = await Box.openBox(accounts[0], web3.currentProvider);
-    if (!box) {
+    try {
+
+      // Connection to BOX
+      const box = await Box.openBox(accounts[0], web3.currentProvider);
+      if (!box) {
+        dispatch({
+          type: actionTypes.BOX_FAILURE,
+        });
+        return;
+      }
+
+      // Getting Box Profile
+      const profile = await Box.getProfile(accounts[0]);
+
       dispatch({
-        type: actionTypes.BOX_FAILURE,
+        type: actionTypes.BOX_SUCCESS,
+        payload: {
+          box,
+          name: profile.name,
+          address: accounts[0],
+        },
       });
-      return;
+    } catch (e) {
+      alert('Cant connect to 3Box. Please, reload page or try later');
+
     }
-
-    // Getting Box Profile
-    const profile = await Box.getProfile(accounts[0]);
-
-    dispatch({
-      type: actionTypes.BOX_SUCCESS,
-      payload: {
-        box,
-        name: profile.name,
-        address: accounts[0],
-      },
-    });
   };
 };
 
