@@ -1,9 +1,9 @@
 # Foam Guides
-#### Decentralised reviews powered by communities and FOAM maps 
+### Decentralised reviews powered by communities and FOAM maps 
 
-### Official site: https://foam-guides.space
+#### Official site: https://foam-guides.space
 
-### Video presentation: 
+#### Video presentation: 
 
 This project was designed from scratch for Gitcoin virtual hackathon Sustain Web3 
 
