@@ -47,6 +47,15 @@ Each review has star rating also and credentials which are automatically taken f
 
 #### Writing new review
 
-
+Write reviews dialog is designed for great customer experience. User could set rating and provide review. When user presses "Post" button, s/he could see emotional feedback when review will be submitted 
+to system. New reviews immediately appears in in POI Reviews window.
 
 ![4](https://user-images.githubusercontent.com/26343374/74374621-d38d5980-4def-11ea-9b35-3298fc5d0a46.jpeg)
+
+## Technical stack
+
+React, FOAM API, 3Box API, Web3, Mapbox GL, etc.
+
+## Disclaimer
+
+This application is provided "as is" and "with all faults." Me as developer makes no representations or warranties of any kind concerning the safety, suitability, lack of viruses, inaccuracies, typographical errors, or other harmful components of this software. There are inherent dangers in the use of any software, and you are solely responsible for determining whether this software product is compatible with your equipment and other software installed on your equipment. You are also solely responsible for the protection of your equipment and backup of your data, and THE PROVIDER will not be liable for any damages you may suffer in connection with using, modifying, or distributing this software product.
