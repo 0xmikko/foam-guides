@@ -128,6 +128,7 @@ export const postReview = (listingHash, data, updateHash) => {
     await box.syncDone;
 
     try {
+      await box.openSpace(APP_SPACE_NAME);
       const thread = await box.openThread(APP_SPACE_NAME, listingHash, {
         firstModerator: ETH_MODERATOR_ADDRESS,
       });

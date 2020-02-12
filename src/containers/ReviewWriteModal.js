@@ -53,6 +53,7 @@ function ReviewWriteModal({
     ) {
       setStatus('DONE');
       getReviews(id);
+      setUpdateHash(0);
       setTimeout(() => onHide(), 1500);
     }
   });
@@ -81,15 +82,17 @@ function ReviewWriteModal({
       );
       break;
     case 'SUBMITTING':
-      body = <div
-        style={{
-          width: '100%',
-          height: '80px',
-          textAlign: 'center',
-          marginTop: '20px'
-        }}>
-        <BeatLoader size={15} margin={5} loading={true} color={'#157ffb'}/>
-      </div>;
+      body = (
+        <div
+          style={{
+            width: '100%',
+            height: '80px',
+            textAlign: 'center',
+            marginTop: '20px',
+          }}>
+          <BeatLoader size={15} margin={5} loading={true} color={'#157ffb'}/>
+        </div>
+      );
       break;
     case 'DONE':
       body = (
@@ -98,7 +101,7 @@ function ReviewWriteModal({
             width: '100%',
             height: '80px',
             textAlign: 'center',
-            marginTop: '20px'
+            marginTop: '20px',
           }}>
           <FaCheckCircle size={'4em'} color={'#4cd23d'} />
         </div>
