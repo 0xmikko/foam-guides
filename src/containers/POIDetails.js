@@ -11,7 +11,7 @@ import WindowWidget from '../components/WindowWidget';
 import Rater from 'react-rater';
 import Review from './Review';
 import {BeatLoader} from 'react-spinners';
-import {Button, Container, Media} from 'react-bootstrap';
+import {Button, Media} from 'react-bootstrap';
 import * as reducers from '../store/reducers';
 import * as actions from '../store/actions';
 import * as status from '../store/utils/status';
@@ -21,12 +21,13 @@ import {Helmet} from 'react-helmet';
 import ReviewWriteModal from './ReviewWriteModal';
 
 export const POIDetails = ({
-  getPOIDetails,
-  POIDetails,
-  boxAccount,
-  getReviews,
-  reviews,
-}) => {
+                             getPOIDetails,
+                             POIDetails,
+                             boxAccount,
+                             getReviews,
+                             reviews,
+                             guides,
+                           }) => {
   const {id} = useParams();
 
   useEffect(() => {
@@ -51,9 +52,26 @@ export const POIDetails = ({
     reviewsQty = null;
 
   if (reviews[id] && reviews[id].status === status.STATUS_SUCCESS) {
-    console.log('RW', reviews[id]);
+    let reviewsData = reviews[id].data.data;
+    console.log('RDD', reviewsData);
 
-    const reviewsData = reviews[id].data.data;
+    const t = reviewsData.map(x => {
+      const account = x.message.account;
+      if (!account) {
+        x.score = 0;
+      } else {
+        x.score = guides[account]
+          ? guides[account].data
+            ? guides[account].data.score
+            : 0
+          : 0;
+      }
+      return x;
+    });
+
+    const reviewsSorted = t.sort((a, b) =>
+      a.score > b.score ? 1 : b.score > a.score ? -1 : 0,
+    );
 
     const sumRating = reviewsData
       .map(e => e.message.rating)
@@ -61,7 +79,8 @@ export const POIDetails = ({
     avgRating = sumRating / reviewsData.length || 0;
 
     reviewsQty = reviewsData.length;
-    reviewsRendered = reviewsData.map(e => (
+
+    reviewsRendered = reviewsSorted.map(e => (
       <Review
         author={e.author}
         review={e.message.review}
@@ -119,6 +138,7 @@ const mapStateToProps = state => ({
   POIDetails: reducers.POIDetails(state),
   boxAccount: reducers.boxAccount(state),
   reviews: reducers.Reviews(state),
+  guides: reducers.Guides(state),
 });
 
 const mapDispatchToProps = dispatch => ({

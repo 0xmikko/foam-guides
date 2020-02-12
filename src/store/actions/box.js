@@ -29,7 +29,6 @@ export const getBoxAccount = () => {
 
     // Getting Box Profile
     const profile = await Box.getProfile(accounts[0]);
-    console.log(profile);
 
     dispatch({
       type: actionTypes.BOX_SUCCESS,
@@ -68,15 +67,11 @@ export const openThread = listingHash => {
     await box.syncDone;
     // const space = await box.openSpace(APP_SPACE_NAME);
 
-    console.log(box);
-
-    console.log('RW-S for', listingHash);
     try {
       const thread = await box.openThread(APP_SPACE_NAME, listingHash, {
         firstModerator: ETH_MODERATOR_ADDRESS,
       });
       let reviews = await thread.getPosts();
-      console.log('RW-F', reviews);
 
       // Filter all messages which doesn't contains rating & review as data fields
       reviews = reviews
@@ -91,8 +86,6 @@ export const openThread = listingHash => {
 
       // Get guide levels
       const uniqueAccounts = [...new Set(reviews.map(x => x.message.account))];
-      console.log("UAA", reviews)
-      console.log("UAA", uniqueAccounts)
       uniqueAccounts.map(x => {
         dispatch(getGuideLevel(x));
       });

@@ -6,7 +6,6 @@
  */
 import {createAction} from 'redux-api-middleware';
 import * as actionTypes from './actionTypes';
-import Box from '3box';
 
 export const getPOI = boundaries => {
   const DATA_URL =
@@ -56,23 +55,32 @@ export const getPOIDetails = listingHash => {
 
 export const getGuideLevel = address => {
   const id = address;
-  console.log("UAA-2", address)
-  return createAction({
-    endpoint: 'https://map-api-direct.foam.space​/user/' + address + '/assets/',
-    method: 'GET',
-    types: [
-      {
-        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_REQUEST,
-        meta: {id},
-      },
-      {
-        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_SUCCESS,
-        meta: {id},
-      },
-      {
-        type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_FAILURE,
-        meta: {id},
-      },
-    ],
-  });
-}
+  console.log('UAA-2', address);
+  return async (dispatch) => {
+    dispatch({
+      type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_REQUEST,
+      meta: {id},
+    });
+
+    const result = await fetch(
+      'https://map-api-direct.foam.space​/user/' + address + '/assets/',
+    );
+
+    if (result.status !== 200) {
+      console.log('Error');
+    }
+
+    const data = await result.json();
+    const score =
+      data.verifiedPOIs * 100 +
+      data.pendingPOIs * 20 +
+      data.challengedPOIs * 30;
+
+    dispatch({
+      type: actionTypes.FOAM_GUIDE_PREFIX + actionTypes.DETAIL_SUCCESS,
+      payload: {score},
+      meta: {id},
+    });
+
+  };
+};

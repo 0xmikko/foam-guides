@@ -5,7 +5,6 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-import React from 'react';
 import {connect} from 'react-redux';
 import * as reducers from '../store/reducers';
 import * as statuses from '../store/utils/status';
@@ -22,18 +21,17 @@ function GuideLevel({account, guides}) {
     return 'Beginner';
   }
 
-  console.log(account, guideLevel);
+  const score = parseInt(guideLevel.data.score);
 
-  const score =
-    guideLevel.data.verifiedPOIs * 100 +
-    guideLevel.data.pendingPOIs * 20 +
-    guideLevel.data.challengedPOIs * 30;
-
-  console.log(account, score)
-
-  if (score < 20) { return "Foam guide (level 1)" }
-  if (score < 50) { return "Foam guide (level 2)" }
-  if (score < 100) { return "Foam guide (level 3)" }
+  if (score < 20) {
+    return 'Foam guide (level 1)';
+  }
+  if (score < 50) {
+    return 'Foam guide (level 2)';
+  }
+  if (score < 100) {
+    return 'Foam guide (level 3)';
+  }
   return 'Expert';
 }
 
