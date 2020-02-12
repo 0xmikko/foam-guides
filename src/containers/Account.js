@@ -9,11 +9,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AccountWidget from '../components/AccountWidget';
 import Media from 'react-bootstrap/Media';
-import Box from '3box';
 import MetaJazzicon from '../components/MetaJazzicon';
-import * as actions from '../store/actions';
 import * as reducers from '../store/reducers';
-import * as statuses from '../store/utils/status';
 import BoxWrapper from '../components/BoxWrapper';
 
 function Account({boxAccount}) {

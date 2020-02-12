@@ -5,14 +5,11 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import {Redirect} from 'react-router';
+import React from 'react';
 
 import {Formik} from 'formik/dist/index';
 import * as yup from 'yup';
 import formikRenderHOC from './FormRenderHOC';
-import * as statuses from '../../store/utils/status';
 
 const FormikForm = ({
   fieldList,

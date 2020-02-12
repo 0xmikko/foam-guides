@@ -5,7 +5,7 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {useCookies} from 'react-cookie';
 import Media from 'react-bootstrap/Media';

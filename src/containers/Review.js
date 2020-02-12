@@ -7,22 +7,15 @@
 
 import React from 'react';
 import {Card, Media} from 'react-bootstrap';
-import {MediaBody} from 'react-bootstrap/Media';
-import {GiKnifeFork} from 'react-icons/gi';
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css';
-import {useHistory} from 'react-router';
-import Jazzicon from 'react-jazzicon';
 import MetaJazzicon from '../components/MetaJazzicon';
 import * as reducers from '../store/reducers';
-import * as actions from '../store/actions';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import GuideLevel from './GuideLevel';
 
 const Review = ({review, rating, author, profiles, account, timestamp}) => {
-  let guide;
-
   let name = account ? account : author.slice(10);
 
   if (profiles && profiles[author] && profiles[author].data) {

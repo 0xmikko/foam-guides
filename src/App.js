@@ -10,7 +10,6 @@ import {connect} from 'react-redux';
 import ReactMapboxGl, {MapContext} from 'react-mapbox-gl';
 
 import BoxProvider from './components/BoxProvider';
-import ReviewWriteModal from './containers/ReviewWriteModal';
 import Account from './containers/Account';
 import POIDots from './containers/POIDots';
 import LeftPanel from './containers/LeftPanel';

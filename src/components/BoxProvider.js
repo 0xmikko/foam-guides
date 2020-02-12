@@ -5,7 +5,7 @@
  *  Copyright (c) 2020. Mikael Lazarev
  */
 
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../store/actions';
 import * as reducers from '../store/reducers';

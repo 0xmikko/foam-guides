@@ -86,13 +86,13 @@ export const openThread = listingHash => {
 
       // Get guide levels
       const uniqueAccounts = [...new Set(reviews.map(x => x.message.account))];
-      uniqueAccounts.map(x => {
+      uniqueAccounts.forEach(x => {
         dispatch(getGuideLevel(x));
       });
 
       // Get Profiles
       const uniqueUsers = [...new Set(reviews.map(x => x.author))];
-      uniqueUsers.map(x => {
+      uniqueUsers.forEach(x => {
         dispatch(getProfile(x));
       });
     } catch (e) {
@@ -122,7 +122,6 @@ export const postReview = (listingHash, data, updateHash) => {
     await box.syncDone;
 
     try {
-      const space = await box.openSpace(APP_SPACE_NAME);
       const thread = await box.openThread(APP_SPACE_NAME, listingHash, {
         firstModerator: ETH_MODERATOR_ADDRESS,
       });
