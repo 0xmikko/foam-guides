@@ -38,7 +38,7 @@ export const POIDetails = ({
     if (boxAccount.status === status.STATUS_SUCCESS) {
       getReviews(id);
     }
-  }, [boxAccount.status]);
+  }, [boxAccount.status, id]);
 
   const [showWriteModal, setShowWriteModal] = useState(false);
 
