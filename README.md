@@ -24,7 +24,7 @@ reputation on Foam maps)
 
 #### Onboarding
 
-Onboardning is a crucial process, and I invested time to show brief service description on the first screen. So, there are three basic fuctions:
+Onboardning is a crucial process, and I invested time to show brief service description on the first screen. So, there are three basic functions:
  
 ![1](https://user-images.githubusercontent.com/26343374/74374605-ce300f00-4def-11ea-94ad-fb2ca6643914.jpeg)
 
