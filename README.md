@@ -5,11 +5,19 @@
 
 ### Video presentation: 
 
+This project was designed from scratch for Gitcoin virtual hackathon Sustain Web3 
+
 ### Inspiration
+New IT technologies gave us amazing opportunity, however today our life depends on them. Millions of people use Google Maps as one source of knowledge and 
+it means, that we depend on information which would be provide by monopoly. 
+
+When you use centralised maps (like Google or Bing maps), you provide your private data to 3rd party company and they use it to show advertisements etc. Furthermore, you could not trust to reviews 
+cause they weren't proofed with blockchain and could be changed by maps provider. Provider also declares that it has rights for all collected reviews and it means that you could not get reviews by API from another service.
 
 ### Solution
 
-Decentralised review app is a good service which works with FOAM maps. It integreates decentralised ideas from 
+Decentralised review app is a good service which works with FOAM maps. FOAM provides incredible service for getting information about POI, and 3Box is used for keeping user reviews in decentralised world.
+Together, these two powerful technologies create new customer experience.
 
 #### Onboarding
 
