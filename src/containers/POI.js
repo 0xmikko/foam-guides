@@ -81,10 +81,7 @@ export const POI = ({item}) => {
             <div className={'mg-b-0 tx-12 tx-color-03'} a={''}>
               {item.tags.join(' ')}
             </div>
-            <div className={'mg-b-0 tx-12 tx-color-03'} a={''}>
-              2.0 <Rater total={5} rating={2} interactive={false} /> (15
-              reviews)
-            </div>
+
           </Media.Body>
         </Media>
       </Card>
